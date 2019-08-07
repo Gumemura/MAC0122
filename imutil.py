@@ -74,6 +74,7 @@ def crie_imagem(nlin, ncol, valor):
 
 #--------------------------------------------------------------------------
 def copie_imagem(dest, orig):
+    #PENDENTE
     ''' (list, list) -> None
 
     Recebe duas imagens de mesma dimensão e copia o conteúdo de orig para dest.
@@ -96,7 +97,6 @@ def copie_imagem(dest, orig):
     #print("copie_imagem(): Vixe! Essa função ainda não foi feita.")
 
     dest = orig.copy()
-    print(dest, orig)
 
 
 #--------------------------------------------------------------------------
@@ -127,6 +127,7 @@ def clone_imagem(imagem):
 
 #--------------------------------------------------------------------------
 def recorte_imagem(imagem, tlx, tly, brx, bry):
+    #PENDENTE
     ''' (list, int, int, int, int) -> list
 
     Recebe uma imagem e as coordenadas (tlx, tly) do ponto TL (Top-Left) 
