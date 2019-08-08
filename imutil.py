@@ -7,7 +7,6 @@
 #------------------------------------------------------------------
 
 '''
-
     Nome: Guilherme Umemura
     NUSP: 9353592
 
@@ -39,12 +38,14 @@
         página https://www.ime.usp.br/~pf/algoritmos/aulas/quick.html.
 
     Descrição de ajuda ou indicação de fonte:
+        https://runestone.academy/runestone/books/published/thinkcspy/index.html
 
 '''
 
 #--------------------------------------------------------------------------        
 def crie_imagem(nlin, ncol, valor):
-    print("aaaa")
+    lista = list()
+
     ''' (int, int, obj) -> list
 
     Recebe dois inteiros nlin e ncol e um valor. 
@@ -60,10 +61,19 @@ def crie_imagem(nlin, ncol, valor):
     [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
     >>> 
     '''
-    print("crie_imagem(): Vixe! Essa função ainda não foi feita.")
+    #print("crie_imagem(): Vixe! Essa função ainda não foi feita.")
 
-#--------------------------------------------------------------------------        
+    for c in range(ncol):
+        lista.append(valor)
+
+    lista = [lista] * nlin
+
+    return(lista)
+
+
+#--------------------------------------------------------------------------
 def copie_imagem(dest, orig):
+    #PENDENTE
     ''' (list, list) -> None
 
     Recebe duas imagens de mesma dimensão e copia o conteúdo de orig para dest.
@@ -83,10 +93,14 @@ def copie_imagem(dest, orig):
     >>> tt
     [[777, -122, 3], [1, 2, 3]]
     '''
-    print("copie_imagem(): Vixe! Essa função ainda não foi feita.")
+    #print("copie_imagem(): Vixe! Essa função ainda não foi feita.")
 
-#--------------------------------------------------------------------------        
+    dest = orig.copy()
+
+
+#--------------------------------------------------------------------------
 def clone_imagem(imagem):
+    lista_Clone = list()
     ''' (list) -> list
 
     Recebe uma imagem e retorna uma cópia/clone da imagem
@@ -105,10 +119,14 @@ def clone_imagem(imagem):
     [[111111, -122, 3], [1, 2, 3]]
     >>> 
     '''
-    print("clone_imagem(): Vixe! Essa função ainda não foi feita.")
+    #print("clone_imagem(): Vixe! Essa função ainda não foi feita.")
 
-#--------------------------------------------------------------------------        
+    lista_Clone = imagem[:]
+    return lista_Clone
+
+#--------------------------------------------------------------------------
 def recorte_imagem(imagem, tlx, tly, brx, bry):
+    #PENDENTE
     ''' (list, int, int, int, int) -> list
 
     Recebe uma imagem e as coordenadas (tlx, tly) do ponto TL (Top-Left) 
