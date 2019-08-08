@@ -134,6 +134,8 @@ def clone_imagem(imagem):
 #--------------------------------------------------------------------------
 def recorte_imagem(imagem, tlx, tly, brx, bry):
     #PENDENTE
+    mini_list = list()
+    transferidor = list()
     ''' (list, int, int, int, int) -> list
 
     Recebe uma imagem e as coordenadas (tlx, tly) do ponto TL (Top-Left) 
@@ -143,12 +145,16 @@ def recorte_imagem(imagem, tlx, tly, brx, bry):
     Observe que os pontos na linha brx e coluna bry não fazem parte do retângulo.
 
     Exemplo:
-    >>> crop_image([[1, 2, 3, 4, 5], 
-                    [1, 2, 3, 4, 5], 
-                    [1, 2, 3, 4, 5], 
-                    [1, 2, 3, 4, 5] ], 0, 1, 3, 4)
+    >>> recorte_imagem([[1, 99, 3, 4, 5], 
+                    [1, 88, 3, 4, 5], 
+                    [1, 77, 3, 4, 5],    
+                    [1, 66, 3, 4, 5] ], 0, 1, 3, 4)
+
+                                    tlx tly brx bry
+                                     0   1   3   4
+
     [[2,3,4], [2,3,4], [2,3,4]]
-    >>> crop_image([[1, 2, 3, 4, 5], 
+    >>> recorte_imagem([[1, 2, 3, 4, 5], 
                     [6, 7, 8, 9, 0], 
                     [0, 9, 8, 7, 6], 
                     [1, 2, 3, 4, 5] ], 1, 1, 3, 3)
@@ -156,12 +162,13 @@ def recorte_imagem(imagem, tlx, tly, brx, bry):
     '''
     #print("recorte_imagem(): Vixe! Essa função ainda não foi feita.")
 
-    linha = tlx
-    coluna = tly
+    for l in range(tlx, brx):
+        for c in range(tly, bry):
+            transferidor.append(imagem[l][c])
 
-    limite_l = brx
-    limite_c = bry
+        mini_list.append(transferidor.copy())
+        del transferidor[:]
 
-    for i in range(tly, bry)
+    return mini_list
 
-#--------------------------------------------------------------------------  
+#--------------------------------------------------------------------------
