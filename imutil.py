@@ -73,7 +73,6 @@ def crie_imagem(nlin, ncol, valor):
 
 #--------------------------------------------------------------------------
 def copie_imagem(dest, orig):
-    #PENDENTE
     ''' (list, list) -> None
 
     Recebe duas imagens de mesma dimensão e copia o conteúdo de orig para dest.
@@ -95,7 +94,15 @@ def copie_imagem(dest, orig):
     '''
     #print("copie_imagem(): Vixe! Essa função ainda não foi feita.")
 
-    dest = orig.copy()
+    if len(dest) > len(orig):
+        del dest[-(len(dest) - len(orig)):]
+    elif len(dest) < len(orig):
+        for a in range(len(orig) - len(dest)):
+            dest.append(orig[-a])
+
+    for i in range(0, len(dest)):
+        dest[i] = orig[i]
+
 
 
 #--------------------------------------------------------------------------
@@ -147,6 +154,14 @@ def recorte_imagem(imagem, tlx, tly, brx, bry):
                     [1, 2, 3, 4, 5] ], 1, 1, 3, 3)
     [[7,8], [9,8]]
     '''
-    print("recorte_imagem(): Vixe! Essa função ainda não foi feita.")
+    #print("recorte_imagem(): Vixe! Essa função ainda não foi feita.")
+
+    linha = tlx
+    coluna = tly
+
+    limite_l = brx
+    limite_c = bry
+
+    for i in range(tly, bry)
 
 #--------------------------------------------------------------------------  
