@@ -44,6 +44,7 @@
 
 #--------------------------------------------------------------------------        
 def crie_imagem(nlin, ncol, valor):
+    print("aaaa")
     ''' (int, int, obj) -> list
 
     Recebe dois inteiros nlin e ncol e um valor. 
