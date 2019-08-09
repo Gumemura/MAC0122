@@ -56,28 +56,22 @@ class Pymagem:
         self.ncols = ncols
         self.valor = valor
 
+
     def __str__(self):
-        coleta_coluna = list()
-        tabela_retorno = list()
+        montagem_matriz = (" %s ." % self.valor) * self.ncols + "\n"
+        return montagem_matriz * self.nlins
 
-        if self.nlins == 1:
-            for c in range(self.ncols):
-                tabela_retorno.append(self.valor)
-        else:
-            for l in range(self.nlins):
-                for c in range(self.ncols):
-                    coleta_coluna.append(self.valor)
-                tabela_retorno.append(coleta_coluna.copy())
-                coleta_coluna.clear()
-
-        return "%s" %tabela_retorno
 
     def size(self):
         tuple_return = (self.nlins, self.ncols)
-        return tuple_return
+        return "%d X %d" %(tuple_return[0], tuple_return[1])
 
-    def get(self, cordL, CordC, valor_celula):
-        tabela_retorno[0][0] = 55
+    #def get
+
+    #def put
+
+    #def crop
+
 
 
 
