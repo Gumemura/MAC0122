@@ -39,6 +39,7 @@
         página https://www.ime.usp.br/~pf/algoritmos/aulas/quick.html.
 
     Descrição de ajuda ou indicação de fonte:
+        https://runestone.academy/runestone/books/published/thinkcspy/index.html
 
 '''
 #-------------------------------------------------------------------------- 
@@ -55,22 +56,46 @@ class Pymagem:
         self.nlins = nlins
         self.ncols = ncols
         self.valor = valor
+        self.tabela = []
 
+        transporte = list()
+        for l in range(self.nlins):
+            for c in range(self.ncols):
+                transporte.append(self.valor)
+            self.tabela.append(transporte.copy())
+            transporte.clear()
 
     def __str__(self):
-        montagem_matriz = (" %s ." % self.valor) * self.ncols + "\n"
-        return montagem_matriz * self.nlins
-
+        for col in self.tabela:
+            print(col)
+        return " "
 
     def size(self):
         tuple_return = (self.nlins, self.ncols)
         return "%d X %d" %(tuple_return[0], tuple_return[1])
 
-    #def get
+    def get(self, lGet, cGet):
+        return self.tabela[lGet][cGet]
 
-    #def put
+    def put(self, lPut, cPut, vPut):
+        self.tabela[lPut][cPut] = vPut
 
-    #def crop
+    def crop(self, tlL, tlC, brL, brC):
+        transferidor, crop_matrix = list()
+
+        '''tlL = 0
+        tlC = 0
+        brL = (self.nlins - 1)
+        brC = (self.ncols - 1)'''
+
+        for l in range(tlL, brL):
+            for c in range(tlC, brC):
+                transferidor.append(self.tabela[l][c])
+
+            crop_matrix.append(transferidor.copy())
+            del transferidor[:]
+
+        return crop_matrix
 
 
 
