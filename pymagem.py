@@ -81,21 +81,29 @@ class Pymagem:
         self.tabela[lPut][cPut] = vPut
 
     def crop(self, tlL, tlC, brL, brC):
-        transferidor, crop_matrix = list()
+        if tlL > self.nlins - 1 or tlL < 0:
+            tlL = 0
 
-        '''tlL = 0
-        tlC = 0
-        brL = (self.nlins - 1)
-        brC = (self.ncols - 1)'''
+        if tlC > self.ncols - 1 or tlC < 0:
+            tlC = 0
 
-        for l in range(tlL, brL):
-            for c in range(tlC, brC):
-                transferidor.append(self.tabela[l][c])
+        if brL > self.nlins - 1 or brL < 0:
+            brL = self.nlins - 1
 
-            crop_matrix.append(transferidor.copy())
-            del transferidor[:]
+        if brC > self.ncols - 1 or brC < 0:
+            brC = self.ncols - 1
 
-        return crop_matrix
+        pymagem_return = Pymagem((brL - tlL) + 1,  (brC - tlC) + 1, 0)
+        linha_Pyr = 0
+        coluna_Pyr = 0
+        for line in range(tlL, brL + 1):
+            for col in range(tlC, brC + 1):
+                pymagem_return.tabela[linha_Pyr][coluna_Pyr] = self.tabela[line][col]
+                coluna_Pyr += 1
+            linha_Pyr += 1
+            coluna_Pyr = 0
+
+        return print(pymagem_return)
 
 
 
