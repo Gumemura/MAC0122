@@ -163,6 +163,7 @@ def recorte_imagem(imagem, tlx, tly, brx, bry):
     #print("recorte_imagem(): Vixe! Essa função ainda não foi feita.")
 
     for l in range(tlx, brx):
+        print("a")
         for c in range(tly, bry):
             transferidor.append(imagem[l][c])
 

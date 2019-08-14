@@ -41,6 +41,8 @@
     Descrição de ajuda ou indicação de fonte:
         https://runestone.academy/runestone/books/published/thinkcspy/index.html
 
+        EP03 A partir da linha 110
+
 '''
 #-------------------------------------------------------------------------- 
 
@@ -105,6 +107,85 @@ class Pymagem:
 
         return print(pymagem_return)
 
+########################## EP 03 ##########################
+
+    def __add__(self, pymagem_soma):
+        linhasAdd = int()
+        colunasAdd = int()
+
+        linhasAdd = len(self.tabela)
+        colunasAdd = len(self.tabela[0])
+
+        pymagem_somada = Pymagem(linhasAdd, colunasAdd, 0)
+
+        for l in range(linhasAdd):
+            for c in range(colunasAdd):
+                pymagem_somada.put(l, c, self.tabela[l][c] + pymagem_soma.tabela[l][c])
+
+        return pymagem_somada
+
+    def SomaTeste(self):
+        #Funçao usada apenas para testes de uso interno
+        linhaST = len(self.tabela)
+        colunaST = len(self.tabela[0])
+
+        nAdd = 0
+
+        for lST in range(linhaST):
+            for cST in range(colunaST):
+                self.put(lST,cST,nAdd)
+                nAdd += 1
+
+        print(self)
+
+    def __mul__(self, alpha):
+        linhasMul = int()
+        colunasMul = int()
+
+        linhasMul = len(self.tabela)
+        colunasMul = len(self.tabela[0])
+
+        pymagem_Mul = Pymagem(linhasMul, colunasMul, 0)
+
+        for l in range(linhasMul):
+            for c in range(colunasMul):
+                pymagem_Mul.put(l, c, self.tabela[l][c]*alpha)
+
+        return pymagem_Mul
+
+    def paste(self, other, tlin, tcol):
+
+        if (len(self.tabela) - tlin) <= len(other.tabela):
+            linhaLimite = len(other.tabela)
+        else:
+            linhaLimite = len(self.tabela) - tlin
+
+        if (len(self.tabela[0]) - tcol) < len(other.tabela[0]):
+            colunaLimite = len(other.tabela[0])
+        else:
+            colunaLimite = len(self.tabela[0]) - tcol
+
+        lOther = 0
+        cOther = 0
+
+        for l in range(tlin, linhaLimite):
+
+            for c in range(tcol, colunaLimite):
+                self.tabela[l][c] = other.tabela[lOther][cOther]
+                print("linha: %d" %lOther)
+                print("coluna: %d" %cOther)
+                cOther += 1
+            lOther += 1
+            cOther = 0
+
+
+
+'''
+a = Pymagem(4,5,0)
+Pymagem.SomaTeste(a)
+b = Pymagem(2,3,0)
+Pymagem.paste(a, b , 1,1)
+'''
 
 
 

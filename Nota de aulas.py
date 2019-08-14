@@ -31,5 +31,10 @@ tipos de erro em programação:
 
 
 >>>>>>> Aula 3 - 08/08/2019
+	n teve nada de muito relevante que devesse ser anotado
+
+>>>>>>> Aula 4 - 13/08/2019
+	n fui :(
+
 
 
