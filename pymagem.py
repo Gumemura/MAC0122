@@ -155,6 +155,7 @@ class Pymagem:
 
     def paste(self, other, tlin, tcol):
 
+        #A logica abaixo so funcina quando tlin e tcol estao dentro da self.tabela
         if (len(self.tabela) - tlin) <= len(other.tabela):
             linhaLimite = len(other.tabela)
         else:
@@ -169,18 +170,20 @@ class Pymagem:
         cOther = 0
 
         for l in range(tlin, linhaLimite):
-
             for c in range(tcol, colunaLimite):
                 self.tabela[l][c] = other.tabela[lOther][cOther]
-                print("linha: %d" %lOther)
-                print("coluna: %d" %cOther)
                 cOther += 1
             lOther += 1
             cOther = 0
 
+        ######## Logica que funfa com tlin e tcol fora da self.tabela
+        if tlin < (len(self.tabela) - 1) & tcol < (len(self.tabela[0]) - 1):
+
+
 
 
 '''
+14,28
 a = Pymagem(4,5,0)
 Pymagem.SomaTeste(a)
 b = Pymagem(2,3,0)
