@@ -36,5 +36,28 @@ tipos de erro em programação:
 >>>>>>> Aula 4 - 13/08/2019
 	n fui :(
 
+>>>>>>> Aula 5 - 15/08/2019
+	Condutor da aula = Exercicio: verificar se uma string esta bem feita ou nao. Ou seja, se cada parenteses, colchetes e chaves sao fechadas na ordem inversam em foram abertas
+	Ex.: bem formada: "([], {[]})"
+		 mau formada: "()["
+
+	- Pilhas, ou Stack em ingles
+
+		#dicionario: estudar. Parece uma vetor de duas colunas, uma lista de pares
+		A solucao para o problema é algo assim:
+
+		s = input("digite o texto a ser analisado").stip() --> o stip limpa os espaços em branco
+
+		abres = '([{'
+		fechas = ')]}'
+
+		pilha = stack()   --> no stakc temos dois metodos principais: push("para adc elemento"); pop("que remove"); peer("espia o topo da pilha"); is_empty() "ve se esta vazia"
+							  Na verdade, a Stack() nao é uma classe natural de python. temos q implementa-la
+		
+		dicio = {']':'[', ')':'(', '}':'{'}		--> o tipo Dicionario tmbm n existe, vamos implementa-la
+
+		for i in range(len(s)):
+			if s[i] in abres:
+				pilha.push(s[i])
 
 
