@@ -167,7 +167,17 @@ class Pymagem:
             coordL += 1
             coordC = tcol
 
+    def pinte_disco(self, lin, col, raio, val):
 
+        for lD in range(lin - (raio - 1), lin + raio):
+            if lD >= 0 and lD < len(self.tabela):
+                self.tabela[lD][col] = val
+
+        #teste com a.pinte_disco(-1,3,3,1) -> ta bugado
+
+        for cD in range(col - (raio - 1), col + raio):
+            if cD >= 0 and cD < len(self.tabela[0]):
+                self.tabela[lin][cD] = val
 
 
 
