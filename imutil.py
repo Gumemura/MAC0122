@@ -70,7 +70,6 @@ def crie_imagem(nlin, ncol, valor):
 
     return(lista)
 
-
 #--------------------------------------------------------------------------
 def copie_imagem(dest, orig):
     ''' (list, list) -> None
