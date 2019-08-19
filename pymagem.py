@@ -162,36 +162,36 @@ class Pymagem:
         return pymagem_Mul
 
     def paste(self, other, tlin, tcol):
+        coordL = tlin
+        coordC = tcol
 
-        #A logica abaixo so funcina quando tlin e tcol estao dentro da self.tabela
-        if (len(self.tabela) - tlin) <= len(other.tabela):
-            linhaLimite = len(other.tabela)
-        else:
-            linhaLimite = len(self.tabela) - tlin
+        for lo in range(len(other.tabela)):
+            for co in range(len(other.tabela[0])):
+                if lo < len(self.tabela) and co < len(self.tabela[0]):
+                    if (coordL >= 0 and coordC >= 0) and (coordL < len(self.tabela) and coordC < len(self.tabela[0])):
+                        self.tabela[coordL][coordC] = other.tabela[lo][co]
+                    coordC += 1
 
-        if (len(self.tabela[0]) - tcol) < len(other.tabela[0]):
-            colunaLimite = len(other.tabela[0])
-        else:
-            colunaLimite = len(self.tabela[0]) - tcol
+            coordL += 1
+            coordC = tcol
 
-        lOther = 0
-        cOther = 0
+    def pinte_disco(self, lin, col, raio, val):
 
-        for l in range(tlin, linhaLimite):
-            for c in range(tcol, colunaLimite):
-                self.tabela[l][c] = other.tabela[lOther][cOther]
-                cOther += 1
-            lOther += 1
-            cOther = 0
+        for lD in range(lin - (raio - 1), lin + raio):
+            if lD >= 0 and lD < len(self.tabela):
+                self.tabela[lD][col] = val
 
-        ######## Logica que funfa com tlin e tcol fora da self.tabela
-        #if tlin < (len(self.tabela) - 1) & tcol < (len(self.tabela[0]) - 1):
+        #teste com a.pinte_disco(-1,3,3,1) -> ta bugado
+
+        for cD in range(col - (raio - 1), col + raio):
+            if cD >= 0 and cD < len(self.tabela[0]):
+                self.tabela[lin][cD] = val
+
 
 
 
 
 '''
-14,28
 a = Pymagem(4,5,0)
 Pymagem.SomaTeste(a)
 b = Pymagem(2,3,0)
