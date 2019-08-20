@@ -171,32 +171,23 @@ class Pymagem:
                     if (coordL >= 0 and coordC >= 0) and (coordL < len(self.tabela) and coordC < len(self.tabela[0])):
                         self.tabela[coordL][coordC] = other.tabela[lo][co]
                     coordC += 1
-
             coordL += 1
             coordC = tcol
 
     def pinte_disco(self, lin, col, raio, val):
 
         for lD in range(lin - (raio - 1), lin + raio):
-            if lD >= 0 and lD < len(self.tabela):
+            if (lD >= 0 and lD < len(self.tabela)) and (col >= 0 and col < len(self.tabela[0])):
                 self.tabela[lD][col] = val
 
-        #teste com a.pinte_disco(-1,3,3,1) -> ta bugado
-
         for cD in range(col - (raio - 1), col + raio):
-            if cD >= 0 and cD < len(self.tabela[0]):
+            if (cD >= 0 and cD < len(self.tabela[0])) and (lin >= 0 and lin < len(self.tabela)):
                 self.tabela[lin][cD] = val
 
 
 
 
 
-'''
-a = Pymagem(4,5,0)
-Pymagem.SomaTeste(a)
-b = Pymagem(2,3,0)
-Pymagem.paste(a, b , 1,1)
-'''
 
 
 
