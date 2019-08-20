@@ -60,4 +60,7 @@ tipos de erro em programação:
 			if s[i] in abres:
 				pilha.push(s[i])
 
+>>>>>>> Aula 6 - 20/08/2019
+	nao vim :( o mongol aqui esqueceu de ligar o despertador
+
 
