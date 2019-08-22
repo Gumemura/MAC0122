@@ -157,7 +157,7 @@ class Pymagem:
 
         for lo in range(len(other.tabela)):
             for co in range(len(other.tabela[0])):
-                if lo < len(self.tabela) and co < len(self.tabela[0]):
+                if lo < len(self.tabela) and co < (self.tabela[0]):
                     if (coordL >= 0 and coordC >= 0) and (coordL < len(self.tabela) and coordC < len(self.tabela[0])):
                         self.tabela[coordL][coordC] = other.tabela[lo][co]
                     coordC += 1
@@ -166,13 +166,15 @@ class Pymagem:
 
     def pinte_disco(self, lin, col, raio, val):
 
-        for lD in range(lin - (raio - 1), lin + raio):
-            if (lD >= 0 and lD < len(self.tabela)) and (col >= 0 and col < len(self.tabela[0])):
-                self.tabela[lD][col] = val
+        for lPD in range(len(self.tabela)):
+            for cPD in range(len(self.tabela[0])):
+                if(((lPD - lin)**2 + (cPD - col)**2 - raio**2) <= 0):
+                    if((lPD >= 0 and lPD < len(self.tabela)) and (cPD >= 0 and cPD < len(self.tabela[0]))):
+                        self.tabela[lPD][cPD] = val
 
-        for cD in range(col - (raio - 1), col + raio):
-            if (cD >= 0 and cD < len(self.tabela[0])) and (lin >= 0 and lin < len(self.tabela)):
-                self.tabela[lin][cD] = val
+
+
+
 
 
 
