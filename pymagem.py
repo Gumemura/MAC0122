@@ -73,7 +73,11 @@ class Pymagem:
         for linS in range(len(self.tabela)):
             matriz += '['
             for colS in range(len(self.tabela[0])):
-                matriz += ("%d") %self.tabela[linS][colS]
+                if(type(self.tabela[linS][colS]) == int):
+                    matriz += ("%d") %self.tabela[linS][colS]
+                elif(type(self.tabela[linS][colS]) == float):
+                    matriz += ("%.1f") %self.tabela[linS][colS]
+
                 if colS != len(self.tabela[0]) - 1:
                     matriz += ", "
             matriz += ']\n'
@@ -131,20 +135,6 @@ class Pymagem:
                 pymagem_somada.put(l, c, self.tabela[l][c] + pymagem_soma.tabela[l][c])
 
         return pymagem_somada
-
-    def SomaTeste(self):
-        #Funçao usada apenas para testes de uso interno
-        linhaST = len(self.tabela)
-        colunaST = len(self.tabela[0])
-
-        nAdd = 0
-
-        for lST in range(linhaST):
-            for cST in range(colunaST):
-                self.put(lST,cST,nAdd)
-                nAdd += 1
-
-        print(self)
 
     def __mul__(self, alpha):
         linhasMul = int()
