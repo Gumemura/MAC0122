@@ -75,6 +75,8 @@ class Pymagem:
             for colS in range(len(self.tabela[0])):
                 if(type(self.tabela[linS][colS]) == int):
                     matriz += ("%d") %self.tabela[linS][colS]
+                elif(type(self.tabela[linS][colS]) == str):
+                    matriz += ("%c") %self.tabela[linS][colS]
                 elif(type(self.tabela[linS][colS]) == float):
                     matriz += ("%.1f") %self.tabela[linS][colS]
 
@@ -172,6 +174,12 @@ class Pymagem:
                     if((lPD >= 0 and lPD < len(self.tabela)) and (cPD >= 0 and cPD < len(self.tabela[0]))):
                         self.tabela[lPD][cPD] = val
 
+    def pinte_retangulo(self, lTL, cTL, lBR, cBR, val):
+
+        for lp_r in range(lTL, lBR + 1):
+            for cp_r in range(cTL, cBR + 1):
+                if ((lp_r >= 0 and lp_r < len(self.tabela)) and (cp_r >= 0 and cp_r < len(self.tabela[0]))):
+                    self.tabela[lp_r][cp_r] = val
 
 
 
