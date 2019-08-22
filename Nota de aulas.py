@@ -64,3 +64,11 @@ tipos de erro em programação:
 	nao vim :( o mongol aqui esqueceu de ligar o despertador
 
 
+>>>>>>> Aula 7 - 22/08/2019
+	Aula de hj - array
+
+	desenvolvimento da classe Arry2D = dois parametros: tuble, com as dimencoes da matrix e um int (ou float) com os valores das celular
+	
+	para fazer a classe Array, nao precisa fazer uma matriz, mas um lista. na hora de dar o print, percorremos todos os itens da lista de metemos um /n pra cada linha 
+
+	=

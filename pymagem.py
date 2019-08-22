@@ -70,6 +70,11 @@ class Pymagem:
     def __str__(self):
         matriz = ''
 
+        '''Aula de 22/08/19: como fazer o __str__ que faz o retorno independentemente do valor da lista: 
+            variavel_tip_str = str(self.tabela[0])
+            dane-se o tipo do objeto, ele sera convertido para string!
+            nao precisava de todos esses ifs
+        '''
         for linS in range(len(self.tabela)):
             matriz += '['
             for colS in range(len(self.tabela[0])):
