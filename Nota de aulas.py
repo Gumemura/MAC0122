@@ -72,3 +72,7 @@ tipos de erro em programação:
 	para fazer a classe Array, nao precisa fazer uma matriz, mas um lista. na hora de dar o print, percorremos todos os itens da lista de metemos um /n pra cada linha 
 
 	=
+>>>>>>> Aula 8 - 27/08/2019
+	continuacao de array.
+	array é basicamente uma representacao de matrizes, uma lista bidimensional
+	vista = exibicao dos valores da array mas de forma diferente
