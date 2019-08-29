@@ -42,8 +42,9 @@
 
 '''
 import numpy as np
+from pymagem import Pymagem
 
-#-------------------------------------------------------------------------- 
+#--------------------------------------------------------------------------
 
 class NumPymagem:
     '''
@@ -80,32 +81,15 @@ class NumPymagem:
     def put(self, lput, cput, valput):
         self.list[lput * self.col + cput] = valput
 
+    def crop(self, lt = 0, ct = 0, lb = "a", cb = "b"):
+        if lb == "a":
+            lb = self.lin
+        if cb == "b":
+            cb = self.col
 
+        pmRet = Pymagem(lb, cb, 0)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return pmRet
 
 
 
