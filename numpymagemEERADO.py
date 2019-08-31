@@ -42,8 +42,9 @@
 
 '''
 import numpy as np
+from pymagem import Pymagem
 
-#-------------------------------------------------------------------------- 
+#--------------------------------------------------------------------------
 
 class NumPymagem:
     '''
@@ -52,23 +53,39 @@ class NumPymagem:
     '''
 
     # escreva aqui os métodos da classe Pymagem
+
     def __init__(self, lin = 0, col =0, val = 0):
         self.lin = lin
         self.col = col
-        self.array = np.full((lin, col), val)#arange(30).reshape(5,6)
+        self.list = [val] * (lin * col)
+        self.table = ([[val] * col]) * lin
 
     def __str__(self):
+        arrayRet = np.array(self.list).reshape(self.lin, self.col)
 
-        return str(self.array)
+        return str(arrayRet)
+
+    def test(self):
+        #Uso interno
+        a = 0
+        for i in range(self.lin * self.col):
+            self.list[i] = a
+            a += 1
+
+    def pegaIndice(self, l, c):
+        #uso interno
+        return (self.lin * l + c)
 
     def size(self):
-        return self.array.shape
+        sizeRet = (self.lin, self.col)
+
+        return sizeRet
 
     def get(self, lin, col):
-        return (self.array[lin, col])
+        return self.list[lin * self.col + col]
 
     def put(self, lin, col, valor):
-        self.array[lin][col] = valor
+        self.list[lin * self.col + col] = valor
 
     def crop(self, lt = 0, ct = 0, lb = "a", cb = "b"):
         if lb == "a":
@@ -76,61 +93,70 @@ class NumPymagem:
         if cb == "b":
             cb = self.col
 
-        npr = NumPymagem(lb - lt + 1, cb - ct + 1)
-        npr.array = (self.array[lt:lb + 1, ct:cb + 1]).copy()
+        pmRet = Pymagem(lb, cb, 0)
 
-        return npr
+        return pmRet
 
     def paste(self, other, tlin, tcol):
-        lother = 0
-        cother = 0
-        for lpaste in range(tlin, tlin + other.lin):
-            for cpaste in range(tcol, tcol + other.col):
-                if((lpaste >= 0 and lpaste < self.lin) and (cpaste >= 0 and cpaste < self.col)):
-                    self.array[lpaste, cpaste] = other.array[lother, cother]
-                cother += 1
-            lother += 1
-            cother = 0
+        indOther = 0
+        for lp_r in range(tlin, tlin + other.lin):
+            for cp_r in range(tcol, tcol + other.col):
+                if ((lp_r >= 0 and lp_r < self.lin) and (cp_r >= 0 and cp_r < self.col)):
+                    self.list[self.pegaIndice(lp_r, cp_r)] = other.list[indOther]
+                    indOther += 1
 
     def __add__(self, other):
-        npaddr = NumPymagem(self.lin, self.col, 0)
+        if(self.lin == other.lin):
+            lR = self.lin
+        else:
+            if(self.lin > other.lin):
+                lR = other.lin
+            else:
+                lR = self.lin
 
-        for ladd in range(self.lin):
-            for cadd in range(self.col):
-                npaddr.array[ladd, cadd] = self.array[ladd, cadd] + other.array[ladd, cadd]
+        if(self.col == other.col):
+            cR = self.col
+        else:
+            if(self.col > other.col):
+                cR = other.col
+            else:
+                cR = self.col
 
-        return npaddr
+        if(len(self.list) == len(other.list)):
+            limit = len(self.list)
+        else:
+            if(len(self.list) > len(other.list)):
+                limit = len(other.list)
+            else:
+                limit = len(self.list)
+
+        npR = NumPymagem(lR, cR, 0)
+
+        for indR in range(limit):
+            npR.list[indR] = self.list[indR] + other.list[indR]
+
+        return npR
 
     def __mul__(self, alpha):
-        npmulr = NumPymagem(self.lin, self.col, 0)
+        npmR = NumPymagem(self.lin, self.col, 0)
 
-        for lmul in range(self.lin):
-            for cmul in range(self.col):
-                npmulr.array[lmul, cmul] = self.array[lmul, cmul] * alpha
+        for imul in range(len(self.list)):
+            npmR.list[imul] = self.list[imul] * alpha
 
-        return npmulr
+        return npmR
 
-    def pinte_disco(self, lin, col, raio, valor):
+    def pinte_disco (self, lin, col, raio, valor):
         for ldsc in range(self.lin):
             for cdsc in range(self.col):
                 if(((ldsc - lin)**2 + (cdsc - col)**2 - raio**2) <= 0):
                     if((ldsc >= 0 and ldsc < self.lin) and (cdsc >= 0 and cdsc < self.col)):
-                        self.array[ldsc, cdsc] = valor
+                        self.list[self.pegaIndice(ldsc, cdsc)] = valor
 
     def pinte_retangulo(self, lTL, cTL, lBR, cBR, val):
         for lp_r in range(lTL, lBR + 1):
             for cp_r in range(cTL, cBR + 1):
                 if ((lp_r >= 0 and lp_r < self.lin) and (cp_r >= 0 and cp_r < self.col)):
-                    self.array[lp_r, cp_r] = val
-
-    def transpoe(self):
-        self.array = self.array.reshape(self.col, self.lin)
-
-    def rearranja(self, nlin, ncol):
-        if(nlin * ncol == self.lin * self.col):
-            self.array = self.array.reshape(nlin, ncol)
-
-
+                    self.list[self.pegaIndice(lp_r, cp_r)] = val
 
 
 

@@ -186,6 +186,9 @@ class Pymagem:
                 if ((lp_r >= 0 and lp_r < len(self.tabela)) and (cp_r >= 0 and cp_r < len(self.tabela[0]))):
                     self.tabela[lp_r][cp_r] = val
 
+########################## EP 04 ##########################
+
+
 
 
 
