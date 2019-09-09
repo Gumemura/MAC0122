@@ -48,29 +48,40 @@ class Polinomio:
 
 
 
-
+    #Print com termos variaveis multipliacdos por 0
     def __str__(self):
         coefsOrdenados = list()
         for i in range(len(self.coefs) - 1, -1, -1):
             coefsOrdenados.append(self.coefs[i])
-        polinomioReturn = ""
+
+        polinomioReturn = str()
         redutor = 1
         sinal = ""
 
         for elem in(coefsOrdenados):
-            if redutor > 1:
+            if elem != 0:
                 if elem >= 0:
-                    sinal = "+"
+                    if redutor > 1:
+                        sinal = "+"
+                else:
+                    sinal = "-"
+    
+                if elem < 0:
+                    elem *= -1
+    
+                if redutor < len(coefsOrdenados):
+                    polinomioReturn += (" " + sinal + " %sx^%s" %(elem, len(coefsOrdenados ) - redutor))
 
-            if redutor < len(coefsOrdenados):
-                polinomioReturn += (" " + sinal + "%sx^%s" %(elem, len(coefsOrdenados ) - redutor))
-                redutor += 1
-                sinal = ""
+            redutor += 1
 
-        if coefsOrdenados[-1] > 0:
-            sinal = "+"
 
-        polinomioReturn += " " + sinal + "%s" %coefsOrdenados[-1]
+        if coefsOrdenados[-1] != 0:
+            if coefsOrdenados[-1] > 0:
+                sinal = "+"
+            elif coefsOrdenados[-1] < 0:
+                sinal = "-"
+                coefsOrdenados[-1] *= -1
+            polinomioReturn += " " + sinal + " %s" %coefsOrdenados[-1]
 
         return polinomioReturn
 
@@ -149,7 +160,7 @@ class Polinomio:
             numRsub[0] -= num
         return Polinomio(numRsub)
 
-def main():
+'''def main():
     # crie lista de coeficientes
     coefs = [5, 1, -2, 0, -3]
     print(coefs)
@@ -200,7 +211,7 @@ def main():
     p6 = 2 + p1   # __radd__()
     print(" 2 + p1: %s"%p6)
 
-    '''# calcule o produto de polinÃ´nios
+    # calcule o produto de polinÃ´nios
     print("\n5. multiplicaÃ§Ã£o de polinÃ´mios")
     p1 = Polinomio([5, 1, -2, 0, 3])
     p2 = Polinomio([-2, 5, 1])
@@ -221,9 +232,9 @@ def main():
     p1 * p2: 3*x^6 + 15*x^5 - 8*x^4 - 9*x^3 + 14*x^2 + 23*x^1 - 10
     p1 * p1: 9*x^8 - 12*x^6 + 6*x^5 + 34*x^4 - 4*x^3 - 19*x^2 + 10*x^1 + 25
     p1 * -2:  - 6*x^4 + 4*x^2 - 2*x^1 - 10
-     3 * p1: 9*x^4 - 6*x^2 + 3*x^1 + 15'''
+     3 * p1: 9*x^4 - 6*x^2 + 3*x^1 + 15
 
         
 #----------------------------------------------------------
 if __name__ == "__main__":
-    main()
+    main()'''
