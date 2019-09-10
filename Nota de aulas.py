@@ -61,7 +61,7 @@ tipos de erro em programação:
 				pilha.push(s[i])
 
 >>>>>>> Aula 6 - 20/08/2019
-	nao vim :( o mongol aqui esqueceu de ligar o despertador
+	nao fui :( o mongol aqui esqueceu de ligar o despertador
 
 
 >>>>>>> Aula 7 - 22/08/2019
@@ -76,3 +76,32 @@ tipos de erro em programação:
 	continuacao de array.
 	array é basicamente uma representacao de matrizes, uma lista bidimensional
 	vista = exibicao dos valores da array mas de forma diferente
+
+>>>>>>> Aula 9 - 29/08/2019
+	exemplo: como determinar o caminha mais curto entre duas cidade
+
+	Fazer uma rede: uma matrix cujos indices sao as cidades. se a celular for 1, as cidade indicadas no indice sao vizinhas
+
+	Fila: uma pilha ao contrario
+
+>>>>>>> Aula 10 - 10/09/2019
+	Revendo aula passada: fazendo um mini google maps
+	Array, onde cada linha X coluna é uma cidade. Caso haja caminho entre ambos, valor 1. Caso contrario, valor 0
+	Dica para criar matrizes:
+		for i in range(n):
+			matriz.append([0] * n)
+
+
+>>>>>>> ESTUDAR PRA PROVA
+	Numeros posfixo
+	Fila
+	Pilhas
+
+	Formas de criar uma array
+
+	import numpy as np
+		a = np.array('lista', 'tipo primitivo dos objetos')  --> exemplo: a = np.array([[0,1,2],[3,4,5]], int)
+		a = np.array(range(10))
+
+
+
