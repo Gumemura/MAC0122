@@ -64,14 +64,25 @@ def pegaVizinhos(img, linhaImg, colImg, tamanho):
 
 #------------------------------------------------------------------
 def filtro_dilatacao(img, v):
-
-
     '''(array, int) -> None
 
     Recebe um array img representando uma imagem e um inteiro positivo ímpar v.
     Aplica o filtro da dilatação na imagem considerando vizinhanças de largura v.
     '''
- 
+    imgClone = (img).copy()
+
+    for l in range(len(img)):
+        for c in range(len(img[0])):
+            vz = pegaVizinhos(imgClone, l, c, v)
+
+            termoMaior = 0
+            for lvz in range(len(vz)):
+                for cvz in range(len(vz[0])):
+                    if vz[lvz][cvz] > termoMaior:
+                        termoMaior = vz[lvz][cvz]
+
+            img[l][c] = termoMaior
+
 #------------------------------------------------------------------
 def segmentacao(img, v, limiar, alto, baixo):
     '''(array, int, int, int, int) -> array
@@ -81,8 +92,24 @@ def segmentacao(img, v, limiar, alto, baixo):
     da segmentação em img. 
     '''
 
+    dil = (img).copy()
+    filtro_dilatacao(dil, v)
+
+    cimg = dil - img
+
+    bin = (cimg).copy()
+
+    for l in range(len(bin)):
+        for c in range(len(bin[0])):
+            if bin[l][c] <= limiar:
+                bin[l][c] = baixo
+            else:
+                bin[l][c] = alto
+
+    return bin
+
 #--------------------------------------------------------------------------
-'''def main():
+def main():
     mt = [ [ 9,  4,  5,  0,  8,  0],
            [10,  3,  2,  1,  7,  6],
            [ 9,  1,  6,  3, 15,  5],
@@ -103,12 +130,12 @@ def segmentacao(img, v, limiar, alto, baixo):
 
     print("5. maximo da vizinhaça de largura 3 de [4][5]:", np.max(img[3:6 , 4:7]), "\n")
 
-          
+
     print("6. array após dilataçao:")   
     dil = img.copy()
     filtro_dilatacao(dil, 3) # função mutadora
     print(dil, "\n")
-    
+
     print("7. array representando o contraste:")
     cimg = dil - img
     print(cimg, "\n")
@@ -118,4 +145,4 @@ def segmentacao(img, v, limiar, alto, baixo):
     print(img_binaria)
 
 if __name__ == "__main__":
-    main()'''
+    main()
