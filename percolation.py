@@ -8,8 +8,8 @@
 
 '''
 
-    Nome:
-    NUSP:
+    Nome: Guilherme Umemura
+    NUSP: 9353592
 
     Ao preencher esse cabeçalho com o meu nome e o meu número USP,
     declaro que todas as partes originais desse exercício programa (EP)
@@ -59,3 +59,56 @@ class Percolation:
     Representa uma grade n x m com todos os sítios inicialmente bloqueados.
     o parâmetro shape é a forma (n, m) do array que representa a grade.
     '''
+    def __init__(self, size):
+        self.shape = size
+        self.lin = size[0]
+        self.col = size[1]
+        self.array = np.full((size), 0)
+
+    def __str__(self):
+        return str(self.array)
+
+    def is_open(self, linIO, colIO):
+        if (linIO >= 0 and linIO < self.lin) and (colIO >= 0 and colIO < self.col):
+            if(self.array[linIO][colIO] == 1):
+                return True
+            else:
+                return False
+        else:
+            print("Erro")
+
+    def is_full(self, linIF, colIF):
+        if (linIF >= 0 and linIF < self.lin) and (colIF >= 0 and colIF < self.col):
+            if(self.array[linIF][colIF] == 2):
+                return True
+            else:
+                return False
+        else:
+            print("Erro")
+
+    #def percolates():
+
+    def no_open(self):
+        quantOpen = 0
+        for lin in range(self.shape[0]):
+            for col in range(self.shape[1]):
+                if self.array[lin][col] == 1:
+                    quantOpen += 1
+
+        return quantOpen
+
+    #def open(self, linO, colO):
+
+    def get_grid(self):
+        return (self.array).copy()
+
+
+
+
+
+
+
+
+
+
+
