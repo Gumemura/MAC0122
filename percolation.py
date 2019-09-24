@@ -60,10 +60,13 @@ class Percolation:
     o parâmetro shape é a forma (n, m) do array que representa a grade.
     '''
     def __init__(self, size):
-        self.shape = size
-        self.lin = size[0]
-        self.col = size[1]
-        self.array = np.full((size), 0)
+        if type(size) != tuple or len(size) != 2:
+            print("Erro")
+        else:
+            self.shape = size
+            self.lin = size[0]
+            self.col = size[1]
+            self.array = np.full((size), 0)
 
     def __str__(self):
         return str(self.array)
