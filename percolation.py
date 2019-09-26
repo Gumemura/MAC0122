@@ -51,7 +51,7 @@ import numpy as np
 #-------------------------------------------------------------------------- 
 # constantes
 BLOCKED = 0  # sítio bloqueado
-OPEN    = 1  # sítio aberto
+OPEN    = 1  # sítio aberto empty
 FULL    = 2  # sítio cheio
 
 class Percolation:
@@ -104,6 +104,15 @@ class Percolation:
 
     def get_grid(self):
         return (self.array).copy()
+
+    def open(self):
+        listaChecagem = []
+        linhaOpena = 0
+        for colO in range(self.col):
+            if self.array[linhaOpena][colO] = 1:
+                linhaVizinho = linhaOpena - 1
+                colVizinho = col0
+
 
 
 
