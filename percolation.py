@@ -89,7 +89,12 @@ class Percolation:
         else:
             print("Erro")
 
-    #def percolates():
+    '''def percolates(self):
+        for linP in range(self.lin):
+            for colP in range(self.col):
+                if self.array[linP][colP] == 1:
+                    linStack = linP + 1'''
+
 
     def no_open(self):
         quantOpen = 0
@@ -100,7 +105,17 @@ class Percolation:
 
         return quantOpen
 
-    #def open(self, linO, colO):
+    '''def open(self, linO, colO):
+        if (linO >= 0 and linO < self.lin) and (colO >= 0 and colO < self.col):
+            if self.array[linO][colO] == 0:
+                self.array[linO][colO] = 1
+        else:
+            print("Erro")'''
+            
+    def open(self):
+        for colO in range(self.col):
+            if self.array[0][colO] == 1:
+
 
     def get_grid(self):
         return (self.array).copy()
