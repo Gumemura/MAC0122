@@ -101,7 +101,27 @@ tipos de erro em programação:
 
 	import numpy as np
 		a = np.array('lista', 'tipo primitivo dos objetos')  --> exemplo: a = np.array([[0,1,2],[3,4,5]], int)
-		a = np.array(range(10))
+		a = np.array(range('valor a maximo da array'))
+		a = np.full(('tuple com as dimensoes da array'), 'valor')
+
+	Principais funções com array
+		nomeDaArray.reshape(3,4) -> altera as dimensoes da array
+
+	Propriedades da arra
+		nomeDaArray.shape() -> tuple, dimensoes da array 
+		nomeDaArray.size() -> int, quantidade de elementos contidos na array (multiplicacao dos termos da tuple retornada por shape)
+		
+>>>>>>> Aula 11 - 17/09/2019
+	joguinho das argolinhas nas bases
+	recusao, funcao sendo chamda dentro da propria funcao
+
+>>>>>>> Aula 12 - 19/09/2019
+	3 regras da recursao
+		- RESOLVER: Se vc sabe resolver sem recursao, entao resolva assim
+		- REDUZIR: use a funcao p se aproximar de um caso base
+		- RECORRER:	resolva o problema usando a resposta do problema menor
+
+
 
 
 
