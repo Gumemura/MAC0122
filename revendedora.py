@@ -63,46 +63,33 @@ class Revendedora:
 
     def atenda_encomenda(self, encomenda):
         listRet = []
-        ie = 0
-        ise = 0
 
-        while ie < (len(encomenda)):
-            if encomenda[ie] <= self.estoque[ise]:
-                listRet.append(ise)
-                self.estoque[ise] -= encomenda[ie]
-                ise = 0
-                ie += 1
+        copEn = (encomenda).copy()
+        copSE = (self.estoque).copy()
 
-            elif ise == (self.len - 1):
-                ie += 1
+        def verifica_atende(estoque, pedido):
+            if len(pedido) > 0:
+                for i in range(len(estoque)):
+                    if pedido[0] <= estoque[i]:
+                        estoque[i] -= pedido[0]
+                        pedido.pop(0)
+                        verifica_atende(estoque, pedido)
+                        break
+                    elif i == (len(estoque) - 1):
+                        return 0
+                        break
+            if len(pedido) == 0:
+                return 1
 
-            ise += 1
+        if verifica_atende(copSE, copEn) == 1:
+            tamanhoEnco = len(encomenda)
+            for l in range(tamanhoEnco):
+                for i in range(self.len):
+                    if encomenda[0] <= self.estoque[i]:
+                        self.estoque[i] -= encomenda[0]
+                        listRet.append(i)
+                        encomenda.pop(0)
+                        tamanhoEnco = len(encomenda)
+                        break
 
-        if len(listRet) == len(encomenda):
             return listRet
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
