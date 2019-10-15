@@ -92,4 +92,5 @@ class Revendedora:
                         tamanhoEnco = len(encomenda)
                         break
 
+
             return listRet
