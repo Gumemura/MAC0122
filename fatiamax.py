@@ -55,24 +55,26 @@ def fatia_max(p, r, v):
     soma_max == sum(v[e,d]) é a maior soma de uma fatia 
     v[i:j] com p <= i <= j <= r.
     '''
-    soma_temp = 0
-    soma_max = 0
-    incremento = 0
-    i = p
-    j = r
-
-    while p < r:
-        for n in range(p, r):
-            soma_temp += v[n]
-            if soma_temp > soma_max:
-                soma_max = soma_temp
-                i = p
-                j = n + 1
-        incremento += 1
+    if len(v) > 0:
         soma_temp = 0
-        p += 1
+        soma_max = min(v)
+        i = p
+        j = r
+    
+        while p < r:
+            for n in range(p, r):
+                soma_temp += v[n]
+                if soma_temp > soma_max:
+                    soma_max = soma_temp
+                    i = p
+                    j = n + 1
+            soma_temp = 0
+            p += 1
 
-    return soma_max, i, j
+        return soma_max, i, j
+    else:
+        return 0,0,0
+
 
 #--------------------------------------------------------
 def fatia_max_meio(p, q, r, v):
@@ -85,11 +87,25 @@ def fatia_max_meio(p, q, r, v):
         soma_max==sum(v[e:d]) é a maior soma de uma fatia 
         v[i:j] com p <= i < q < j <= r.
     '''
+    soma_temp = 0
+    soma_max = min(v)
 
+    i = p
+    j = r
 
+    while p < q:
+        for n in range(p, r):
+            soma_temp += v[n]
+            if  soma_temp > soma_max and n >= q:
+                soma_max = soma_temp
+                i = p
+                j = n + 1
 
+        soma_temp = 0
+        p += 1
 
-    return -1, -1, -1
+    return soma_max, i, j
+
 
 #--------------------------------------------------------
 def fatia_max_div_conq(p, r, v):
@@ -97,26 +113,12 @@ def fatia_max_div_conq(p, r, v):
 
     RECEBE uma lista lista v[p:r] de números inteiros e RETORNA
     valores inteiros soma_max, e, d tais que
-
+        Usar dividir para conquistar
+        
         soma_max == sum(v[e,d]) é a maior soma de uma fatia 
         v[i:j] com p <= i <= j <= r.
     '''
-    print("Vixe! Ainda não fiz a função fatia_max_div_conq()...")
-    return -1, -1, -1
 
 
 
-def main():
 
-    v = [31, -41, 59, 26, -53, 58, 97, -93, -23, 84]
-    #v = [0,0,0,0,0,0,0,0,0,0]
-    print(v, "\n")
-    print("Fatia: [0:10]\nEsperado: (187, 2, 7)\nResultado: ",fatia_max(0,10,v), "\n")
-
-    print("Fatia: [2:9]\nEsperado: (187, 2, 7)\nResultado: ",fatia_max(2,9,v), "\n")
-
-    print("Fatia: [3:9]\nEsperado: (155, 5, 7)\nResultado: ",fatia_max(3,9,v), "\n")
-
-    print("Fatia: [7:10]\nEsperado: (84, 9, 10)\nResultado: ",fatia_max(7,10,v), "\n")
-
-main()
