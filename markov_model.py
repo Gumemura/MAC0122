@@ -39,6 +39,8 @@
         página https://www.ime.usp.br/~pf/algoritmos/aulas/quick.html.
 
     Descrição de ajuda ou indicação de fonte:
+        
+        Função mergesort() baseada na contida na página https://panda.ime.usp.br/pythonds/static/pythonds_pt/05-OrdenacaoBusca/OMergeSort.html
 
 '''
 
@@ -47,6 +49,55 @@ class MarkovModel:
         self.k = k
         self.corpus = corpus
         self.listCorpus = list(corpus)
+
+    def __str__(self):
+        textRet = ''
+        if len(self.corpus) > 0:
+            dicioFatias = {}
+            k = self.k
+    
+            for i in range(2):
+                indice = 0
+                k += i
+    
+                while indice < len(self.corpus):
+                    if indice + k > len(self.corpus):
+                        fatia = self.corpus[indice:] + self.corpus[0:(indice + k) - len(self.corpus)]
+                    else:
+                        fatia = self.corpus[indice: indice + k]
+    
+                    if fatia not in dicioFatias:
+                        dicioFatias[fatia] = 1
+                    else:
+                        dicioFatias[fatia] += 1
+    
+                    indice += 1
+    
+            textRet += "alfabeto tem " + str(len(self.alphabet())) + " símbolos\n"
+    
+            dicioOrdenado = {}
+            listaKeys = list(dicioFatias.keys())
+    
+            for elem in listaKeys:
+                if len(elem) != self.k:
+                    indexKP = listaKeys.index(elem)
+                    break
+    
+            listaK0 = sorted(listaKeys[:indexKP])
+            listaK1 = sorted(listaKeys[indexKP:])
+            listaKeys = listaK0 + listaK1
+    
+    
+            for i in range(len(listaKeys)):
+                dicioOrdenado[listaKeys[i]] = dicioFatias[listaKeys[i]]
+    
+            for chave, quant in dicioOrdenado.items():
+                textRet += "'" + str(chave) + "'"+ "\t" + str(quant) + "\n"
+    
+            return textRet
+        else:
+            textRet += "alfabeto tem 0 símbolos\n"
+            return textRet
 
     def alphabet(self):
         def mergeSort(alist):
@@ -115,56 +166,17 @@ class MarkovModel:
                 return contador
 
     def laplace(self, t):
-        if self.N(t) == None:
-            nt = 0
+        if len(self.corpus) > 0:
+            if self.N(t) == None:
+                nt = 0
+            else:
+                nt = self.N(t)
+    
+            if self.N(t[:-1]) == None:
+                ntz = 0
+            else:
+                ntz = self.N(t[:-1])
+    
+            return (nt + 1)/(ntz + len(self.alphabet()))
         else:
-            nt = self.N(t)
-
-        if self.N(t[:-1]) == None:
-            ntz = 0
-        else:
-            ntz = self.N(t[:-1])
-
-        return (nt + 1)/(ntz + len(self.alphabet()))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-modelo1 = MarkovModel(2, "aabcabaacaac")
-
-modelo3 = MarkovModel(0, "Como é bom estudar MAC0122!")
-
-
-
-
->>> modelo1.N("aa")
-3
->>> modelo1.N("aab")
-1
->>> modelo1.N("aac")
-2
->>> modelo1.N("aaa")
->>> modelo1.N("aaaa")
->>> modelo1.N("a")
-
->>> modelo1.laplace("aaa")
-0.16666666666666666
->>> modelo1.laplace("aab")
-0.3333333333333333
->>> modelo1.laplace("aac")
-0.5
-
-
-
-'''
+            return 0
